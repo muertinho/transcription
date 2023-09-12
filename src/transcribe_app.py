@@ -79,7 +79,7 @@ def check_password():
 def main():
     if check_password():
         # load deepl translator
-        whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
+        whisper_translator = whisper_translator(st.secrets.api_keys.replicate)
         cols = st.columns([8, 1, 3])
 
         # title
