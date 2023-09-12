@@ -77,56 +77,57 @@ def check_password():
         return True
 
 def main():
-    #if check_password():
-    # load deepl translator
-    whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
+    if check_password():
+        # load deepl translator
+        whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
 
-    col1a, space1a, col1c = st.columns([8, 1, 1.2])
+        col1a, space1a, col1c = st.columns([8, 1, 1.2])
 
-    # title
-    with col1a:
-        st.title("Transcribe")
-        st.markdown("## An Audio-To-Text Transcription Application")
+        # title
+        with col1a:
+            st.title("Transcribe")
+            st.markdown("## An Audio-To-Text Transcription Application")
 
-    # image
-    with col1c:
-        st.image("imgs/title.jpg")
+        # image
+        with col1c:
+            st.image("imgs/title.jpg")
 
-    with st.expander("", expanded=True):
-        col2a, space2a, col2b = st.columns([0.7, 0.1, 1.2])
-        with col2a:
-            st.markdown("### 1. Upload file")
-            origin_language_known = st.checkbox("Origin language known")
-            if origin_language_known:
-                whisper_languages = get_language()
-                origin_language = st.selectbox("**Choose origin language**", whisper_languages)
-            
-            upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "ogg", "mp4", "m4a"])
-            if upload_file is not None:
-                st.markdown("*listen your recording*")
-                st.audio(upload_file, format="mp3")
-            
+        with st.expander("", expanded=True):
+            col2a, space2a, col2b = st.columns([0.7, 0.1, 1.2])
+            with col2a:
+                st.markdown("### 1. Upload file")
+                origin_language_known = st.checkbox("Origin language known")
+                if origin_language_known:
+                    whisper_languages = get_language()
+                    origin_language = st.selectbox("**Choose origin language**", whisper_languages)
+                
+                upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "ogg", "mp4", "m4a"])
+                if upload_file is not None:
+                    st.markdown("*listen your recording*")
+                    st.audio(upload_file, format="mp3")
+                
 
-            
-            with col2b:
-                st.markdown("### 2. Transcribe Original")
-                transcribe_original = st.button("Transcribe Original")
-                if transcribe_original and upload_file is not None:
-                    if "result" in st.session_state:
-                        del st.session_state.result
+                
+                with col2b:
+                    st.markdown("### 2. Transcribe Original")
+                    transcribe_original = st.button("Transcribe Original")
+                    if transcribe_original and upload_file is not None:
+                        if "result" in st.session_state:
+                            del st.session_state.result
 
-                    option = {"model": "large-v2", "translate": False, "language": origin_language} \
-                        if origin_language_known else {"model": "large-v2", "translate": False}
+                        option = {"model": "large-v2", "translate": False, "language": origin_language} \
+                            if origin_language_known else {"model": "large-v2", "translate": False}
 
-                    result = whisper_translator.predict(audio=upload_file, **option)
-                    if "result" not in st.session_state:
-                        st.session_state.result = result
-                    
-                    if transcribe_original:
-                        st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
-                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
-                        if button:
-                            st.write("Downloaded")
+                        result = whisper_translator.predict(audio=upload_file, **option)
+                        if "result" not in st.session_state:
+                            st.session_state.result = result
+                        
+                        if transcribe_original:
+                            st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
+                            button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
+                            if button:
+                                st.session_state.result = None
+                
 
 if __name__ == "__main__":
     main()
