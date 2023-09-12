@@ -121,4 +121,7 @@ def main():
                     
                     if transcribe_original:
                         st.write(st.session_state.result["transcription"])
+
+if __name__ == "__main__":
+    main()
                 
