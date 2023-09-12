@@ -121,7 +121,7 @@ def main():
                         st.session_state.result = result
                     
                     if transcribe_original:
-                        st.write(st.session_state.result["transcription"])
+                        st.text_area("**Transcription**", st.session_state.result["transcription"])
 
 if __name__ == "__main__":
     main()
