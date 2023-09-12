@@ -6,7 +6,9 @@ Running on replicate
 """
 import os
 import sys
-sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+import pathlib
+#sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
 
 import streamlit as st
 import replicate
