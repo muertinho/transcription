@@ -96,10 +96,10 @@ def main():
             col2a, space2a, col2b = st.columns([1, 0.1, 1.2])
             with col2a:
                 st.markdown("### 1. Upload file")
-                origin_language_known = st.checkbox("Origin language known")
+                origin_language_known = st.checkbox("Audio language known")
                 if origin_language_known:
                     whisper_languages = get_language()
-                    origin_language = st.selectbox("**Choose origin language**", whisper_languages)
+                    origin_language = st.selectbox("**Choose audio language**", whisper_languages)
                 
                 upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "ogg", "mp4", "m4a"])
                 if upload_file is not None:
