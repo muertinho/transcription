@@ -93,7 +93,7 @@ def main():
             st.image("imgs/title.jpg")
 
         with st.expander("", expanded=True):
-            col2a, space2a, col2b = st.columns([0.7, 0.1, 1.2])
+            col2a, space2a, col2b = st.columns([1, 0.1, 1.2])
             with col2a:
                 st.markdown("### 1. Upload file")
                 origin_language_known = st.checkbox("Origin language known")
