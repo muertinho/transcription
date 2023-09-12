@@ -89,7 +89,7 @@ def main():
 
         # image
         with cols[2]:
-            st.image("imgs/title.jpg")
+            st.image("imgs/transcribe.png")
 
         # description
         with st.expander("", expanded=True):
