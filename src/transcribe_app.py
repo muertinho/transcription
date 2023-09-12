@@ -99,9 +99,9 @@ def main():
             origin_language_known = st.checkbox("Origin language known")
             if origin_language_known:
                 whisper_languages = get_language()
-                origin_language = st.selectbox("Choose origin language", whisper_languages)
+                origin_language = st.selectbox("**Choose origin language**", whisper_languages)
             
-            upload_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "ogg", "mp4", "m4a"])
+            upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "ogg", "mp4", "m4a"])
             if upload_file is not None:
                 st.markdown("*listen your recording*")
                 st.audio(upload_file, format="mp3")
@@ -124,9 +124,9 @@ def main():
                     
                     if transcribe_original:
                         st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
-                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.docx", mime="text/plain")
+                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
                         if button:
-                            st.session_state.result = None
+                            st.write("Downloaded")
 
 if __name__ == "__main__":
     main()
