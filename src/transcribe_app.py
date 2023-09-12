@@ -109,8 +109,8 @@ def main():
 
                 
                 with col2b:
-                    st.markdown("### 2. Transcribe Original")
-                    transcribe_original = st.button("Transcribe Original")
+                    st.markdown("### 2. Transcribe Audio")
+                    transcribe_original = st.button("Transcribe")
                     if transcribe_original and upload_file is not None:
                         if "result" in st.session_state:
                             del st.session_state.result
