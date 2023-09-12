@@ -101,7 +101,7 @@ def main():
                     whisper_languages = get_language()
                     origin_language = st.selectbox("**Choose audio language**", whisper_languages)
                 
-                upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "ogg", "mp4", "m4a"])
+                upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "mp4", "m4a"])
                 if upload_file is not None:
                     st.markdown("*listen your recording*")
                     st.audio(upload_file, format="mp3")
