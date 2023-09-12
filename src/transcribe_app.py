@@ -97,7 +97,7 @@ def main():
         with col2a:
             st.markdown("### 1. Upload file")
             origin_language_known = st.checkbox("Origin language known")
-            upload_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "ogg"])
+            upload_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "ogg", "mp4"])
             if upload_file is not None:
                 st.markdown("*listen your recording*")
                 st.audio(upload_file, format="mp3")
@@ -107,7 +107,7 @@ def main():
                 origin_language = st.selectbox("Choose origin language", whisper_languages)
             
             with col2b:
-                st.markdown("### 3. Transcribe Original")
+                st.markdown("### 2. Transcribe Original")
                 transcribe_original = st.button("Transcribe Original")
                 if transcribe_original and len(upload_file) > 0:
                     if "result" in st.session_state:
