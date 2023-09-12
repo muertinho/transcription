@@ -6,7 +6,9 @@ Running on replicate
 """
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+
+
 import streamlit as st
 import replicate
 
@@ -88,7 +90,7 @@ def main():
 
     # image
     with col1c:
-        st.image("../imgs/title.jpg")
+        st.image("imgs/title.jpg")
 
     with st.expander("", expanded=True):
         col2a, space2a, col2b, space2b, col2c = st.columns([0.7, 0.1, 0.6, 0.1, 0.8])
