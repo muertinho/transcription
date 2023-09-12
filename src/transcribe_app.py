@@ -6,13 +6,10 @@ Running on replicate
 """
 import os
 import sys
-import pathlib
-#sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
-sys.path.append(str(pathlib.Path().absolute()).split("/src")[0] + "/src")
+sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
 
 import streamlit as st
 import replicate
-from utils.whisper_client import whisper_translator
 
 # set window properties
 st.set_page_config(layout="wide")
@@ -81,7 +78,7 @@ def check_password():
 def main():
     if check_password():
         # load deepl translator
-        whisper_translator = whisper_translator(st.secrets.api_keys.replicate)
+        whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
         cols = st.columns([8, 1, 3])
 
         # title
