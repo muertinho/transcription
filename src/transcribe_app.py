@@ -122,6 +122,9 @@ def main():
                     
                     if transcribe_original:
                         st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
+                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.docx", mime="text/plain")
+                        if button:
+                            st.session_state.result = None
 
 if __name__ == "__main__":
     main()
