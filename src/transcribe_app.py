@@ -8,9 +8,9 @@ import os
 import sys
 sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
 
-
 import streamlit as st
 import replicate
+from utils.whisper_client import whisper_translator
 
 # set window properties
 st.set_page_config(layout="wide")
