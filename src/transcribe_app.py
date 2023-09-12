@@ -84,8 +84,8 @@ def main():
 
         # title
         with cols[0]:
-            st.title("Transcribe")
-            st.markdown("## An Audio-To-Text Transcription Application")
+            st.header("Transcribe")
+            st.subheader("An Audio-To-Text Transcription Application")
 
         # image
         with cols[2]:
