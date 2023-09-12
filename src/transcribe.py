@@ -6,14 +6,28 @@ Running on replicate
 """
 import os
 import sys
+sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+
 import streamlit as st
-import sys
-sys.path.append('../utils')
-from whisper_client import whisper_translator
+import replicate
+#from utils import whisper_client
 
 # set window properties
 st.set_page_config(layout="wide")
 st.set_option("deprecation.showPyplotGlobalUse", False)
+
+@st.cache_data()
+def whisperTranslator(auth_key):
+    """
+    Establishes a connection to the DeepL Rest-API
+    :param auth_key: authentification key
+    :return: API-connection
+    """
+    client = replicate.Client(api_token=auth_key)
+    model = client.models.get("openai/whisper")
+    version = model.versions.get("91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7")
+    return version
+
 
 def get_language():
     lang_vals = "af, am, ar, as, az, ba, be, bg, " \
@@ -65,7 +79,7 @@ def check_password():
 def main():
     #if check_password():
     # load deepl translator
-    whisper_translator = whisper_translator(st.secrets.api_keys.replicate)
+    whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
 
     col1a, space1a, col1c = st.columns([8, 1, 1.2])
 
