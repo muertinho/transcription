@@ -6,7 +6,7 @@ Running on replicate
 """
 import os
 import sys
-sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import streamlit as st
 from utils import whisper_client
