@@ -2,7 +2,7 @@ import streamlit as st
 import replicate
 
 @st.cache_data()
-def whisperTranslator(auth_key):
+def whisper_translator(auth_key):
     """
     Establishes a connection to the DeepL Rest-API
     :param auth_key: authentification key
@@ -11,5 +11,5 @@ def whisperTranslator(auth_key):
     client = replicate.Client(api_token=auth_key)
     model = client.models.get("openai/whisper")
     version = model.versions.get("91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7")
-    
+
     return version

@@ -6,10 +6,10 @@ Running on replicate
 """
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
 import streamlit as st
-from utils import whisper_client
+import sys
+sys.path.append('../utils')
+from whisper_client import whisper_translator
 
 # set window properties
 st.set_page_config(layout="wide")
@@ -65,7 +65,7 @@ def check_password():
 def main():
     #if check_password():
     # load deepl translator
-    whisper_translator = whisper_client(st.secrets.api_keys.replicate)
+    whisper_translator = whisper_translator(st.secrets.api_keys.replicate)
 
     col1a, space1a, col1c = st.columns([8, 1, 1.2])
 
