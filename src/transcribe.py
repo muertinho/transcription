@@ -10,13 +10,12 @@ sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first posit
 
 import streamlit as st
 import replicate
-import base64
 
 # set window properties
 st.set_page_config(layout="wide")
 st.set_option("deprecation.showPyplotGlobalUse", False)
 
-@st.cache_data(allow_output_mutation=True)
+@st.cache_data()
 def whisperTranslator(auth_key):
     """
     Establishes a connection to the DeepL Rest-API
