@@ -1,0 +1,7 @@
+audio_recorder_streamlit
+mutagen
+numpy
+replicate
+requests
+streamlit
+streamlit-audiorecorder
