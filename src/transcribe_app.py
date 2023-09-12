@@ -80,21 +80,21 @@ def main():
     if check_password():
         # load deepl translator
         whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
-
-        col1a, space1a, col1c = st.columns([8, 1, 1.2])
+        cols = st.columns([8, 1, 1.2])
 
         # title
-        with col1a:
+        with cols[0]:
             st.title("Transcribe")
             st.markdown("## An Audio-To-Text Transcription Application")
 
         # image
-        with col1c:
+        with cols[2]:
             st.image("imgs/title.jpg")
 
+        # description
         with st.expander("", expanded=True):
-            col2a, space2a, col2b = st.columns([1, 0.1, 1.2])
-            with col2a:
+            cols = st.columns([1, 0.1, 1.2])
+            with cols[0]:
                 st.markdown("### 1. Upload file")
                 origin_language_known = st.checkbox("Audio language known")
                 if origin_language_known:
@@ -106,27 +106,25 @@ def main():
                     st.markdown("*listen your recording*")
                     st.audio(upload_file, format="mp3")
                 
+            with cols[2]:
+                st.markdown("### 2. Transcribe Audio")
+                transcribe_original = st.button("Start")
+                if transcribe_original and upload_file is not None:
+                    if "result" in st.session_state:
+                        del st.session_state.result
 
-                
-                with col2b:
-                    st.markdown("### 2. Transcribe Audio")
-                    transcribe_original = st.button("Start Transcription")
-                    if transcribe_original and upload_file is not None:
-                        if "result" in st.session_state:
-                            del st.session_state.result
+                    option = {"model": "large-v2", "translate": False, "language": origin_language} \
+                        if origin_language_known else {"model": "large-v2", "translate": False}
 
-                        option = {"model": "large-v2", "translate": False, "language": origin_language} \
-                            if origin_language_known else {"model": "large-v2", "translate": False}
-
-                        result = whisper_translator.predict(audio=upload_file, **option)
-                        if "result" not in st.session_state:
-                            st.session_state.result = result
-                        
-                        if transcribe_original:
-                            st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
-                            button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
-                            if button:
-                                st.session_state.result = None
+                    result = whisper_translator.predict(audio=upload_file, **option)
+                    if "result" not in st.session_state:
+                        st.session_state.result = result
+                    
+                    if transcribe_original:
+                        st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
+                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
+                        if button:
+                            st.session_state.result = None
                 
 
 if __name__ == "__main__":
