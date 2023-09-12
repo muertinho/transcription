@@ -97,7 +97,7 @@ def main():
         with col2a:
             st.markdown("### 1. Upload file")
             origin_language_known = st.checkbox("Origin language known")
-            upload_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "ogg", "mp4"])
+            upload_file = st.file_uploader("Upload audio file", type=["wav", "mp3", "ogg", "mp4", "m4a"])
             if upload_file is not None:
                 st.markdown("*listen your recording*")
                 st.audio(upload_file, format="mp3")
