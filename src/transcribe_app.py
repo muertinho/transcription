@@ -109,7 +109,7 @@ def main():
             with col2b:
                 st.markdown("### 2. Transcribe Original")
                 transcribe_original = st.button("Transcribe Original")
-                if transcribe_original and len(upload_file) > 0:
+                if transcribe_original and upload_file is not None:
                     if "result" in st.session_state:
                         del st.session_state.result
 
