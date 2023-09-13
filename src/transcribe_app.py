@@ -4,12 +4,11 @@ Date : 15.11.22
 Title : Transcribe
 Running on replicate
 """
-
 import os
 import sys
-sys.path.insert(0, os.path.abspath("./utils"))
+sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
+
 import streamlit as st
-from utils.whisper_client import whisper_translator
 import replicate
 
 # set window properties
@@ -79,7 +78,7 @@ def check_password():
 def main():
     if check_password():
         # load deepl translator
-        whisper_translator = whisper_translator(st.secrets.api_keys.replicate)
+        whisper_translator = whisperTranslator(st.secrets.api_keys.replicate)
         cols = st.columns([8, 1, 3])
 
         # title
