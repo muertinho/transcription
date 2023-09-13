@@ -98,7 +98,7 @@ def main():
                 origin_language_known = st.checkbox("Audio language known")
                 if origin_language_known:
                     whisper_languages = get_language()
-                    origin_language = st.selectbox("**Choose audio language**", whisper_languages)
+                    origin_language = st.selectbox("**Choose audio language**", whisper_languages, index=whisper_languages.index("de"))
                 
                 upload_file = st.file_uploader("**Upload audio file**", type=["wav", "mp3", "mp4", "m4a"])
                 if upload_file is not None:
