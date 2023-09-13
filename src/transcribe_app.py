@@ -120,14 +120,10 @@ def main():
                         st.session_state.result = result
                     
                     if transcribe_button:
-                        with st.spinner("Transcribing..."):
-                            st.markdown("This may take a while...")
-                            st.markdown("The transcription will be displayed below.")
-                            st.markdown("You can also download the transcription.")
-                            st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
-                            button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
-                            if button:
-                                st.session_state.result = None
+                        st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
+                        button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
+                        if button:
+                            st.session_state.result = None
                 
 
 if __name__ == "__main__":
