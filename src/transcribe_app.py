@@ -108,27 +108,27 @@ def main():
             with cols[2]:
                 st.markdown("### 2. Transcribe Audio")
                 transcribe_button = st.button("Start Transcription")
-                with st.spinner("Transcribing..."):
-                    st.markdown("This may take a while...")
-                    st.markdown("The transcription will be displayed below.")
-                    st.markdown("You can also download the transcription.")
-                    if transcribe_button and upload_file is not None:
-                        if "result" in st.session_state:
-                            del st.session_state.result
+                if transcribe_button and upload_file is not None:
+                    if "result" in st.session_state:
+                        del st.session_state.result
 
-                        option = {"model": "large-v2", "translate": False, "language": origin_language} \
-                            if origin_language_known else {"model": "large-v2", "translate": False}
+                    option = {"model": "large-v2", "translate": False, "language": origin_language} \
+                        if origin_language_known else {"model": "large-v2", "translate": False}
 
-                        result = whisper_translator.predict(audio=upload_file, **option)
-                        if "result" not in st.session_state:
-                            st.session_state.result = result
-                        
-                        if transcribe_button:
+                    result = whisper_translator.predict(audio=upload_file, **option)
+                    if "result" not in st.session_state:
+                        st.session_state.result = result
+                    
+                    if transcribe_button:
+                        with st.spinner("Transcribing..."):
+                            st.markdown("This may take a while...")
+                            st.markdown("The transcription will be displayed below.")
+                            st.markdown("You can also download the transcription.")
                             st.text_area("**Transcription**", st.session_state.result["transcription"], height=300)
                             button = st.download_button("Download", data=st.session_state.result["transcription"], file_name="transcription.txt", mime="text/plain")
                             if button:
                                 st.session_state.result = None
-                    
+                
 
 if __name__ == "__main__":
     main()
