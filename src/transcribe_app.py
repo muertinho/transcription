@@ -7,9 +7,9 @@ Running on replicate
 
 import os
 import sys
-sys.path.insert(0, os.path.abspath("../"))  # insert the path at the first position
-from utils.whisper_client import whisper_translator
+sys.path.insert(0, os.path.abspath("./utils"))
 import streamlit as st
+from utils.whisper_client import whisper_translator
 import replicate
 
 # set window properties
