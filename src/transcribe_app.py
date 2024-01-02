@@ -23,8 +23,8 @@ def whisperTranslator(auth_key):
     :return: API-connection
     """
     client = replicate.Client(api_token=auth_key)
-    model = client.models.get("vaibhavs10/incredibly-fast-whisper")
-    version = model.versions.get("65fa8e5a537c692838805dee5e8e845e4c8a70f909ba23b28434b7525b94020e")
+    model = client.models.get("openai/whisper")
+    version = model.versions.get("4d50797290df275329f202e48c76360b3f22b08d28c196cbc54600319435f8d2")
     return version
 
 
@@ -115,7 +115,7 @@ def main():
                     option = {"model": "large-v2", "translate": False, "language": origin_language} \
                         if origin_language_known else {"model": "large-v2", "translate": False}
 
-                    result = whisper_translator.predict(audio=upload_file, **option)
+                    result = whisper_translator.predictions(audio=upload_file, **option)
                     if "result" not in st.session_state:
                         st.session_state.result = result
                     
