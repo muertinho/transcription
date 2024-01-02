@@ -24,7 +24,7 @@ def whisperTranslator(auth_key):
     """
     client = replicate.Client(api_token=auth_key)
     model = client.models.get("openai/whisper")
-    version = model.versions.get("91ee9c0c3df30478510ff8c8a3a545add1ad0259ad3a9f78fba57fbc05ee64f7")
+    version = model.versions.get("65fa8e5a537c692838805dee5e8e845e4c8a70f909ba23b28434b7525b94020e")
     return version
 
 
