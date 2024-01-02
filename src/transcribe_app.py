@@ -115,7 +115,7 @@ def main():
                     option = {"model": "large-v2", "translate": False, "language": origin_language} \
                         if origin_language_known else {"model": "large-v2", "translate": False}
 
-                    result = whisper_translator.predictions(audio=upload_file, **option)
+                    result = whisper_translator.predict(audio=upload_file, **option)
                     if "result" not in st.session_state:
                         st.session_state.result = result
                     
