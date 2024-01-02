@@ -23,7 +23,7 @@ def whisperTranslator(auth_key):
     :return: API-connection
     """
     client = replicate.Client(api_token=auth_key)
-    model = client.models.get("openai/whisper")
+    model = client.models.get("vaibhavs10/incredibly-fast-whisper")
     version = model.versions.get("65fa8e5a537c692838805dee5e8e845e4c8a70f909ba23b28434b7525b94020e")
     return version
 
